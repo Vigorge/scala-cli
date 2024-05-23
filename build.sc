@@ -253,6 +253,13 @@ object dummy extends Module {
       Deps.scalaPy
     )
   }
+  object scalafix extends ScalaModule with Bloop.Module {
+    def skipBloop = true
+    def scalaVersion = Scala.defaultInternal
+    def ivyDeps = Agg(
+      Deps.scalafixInterfaces
+    )
+  }
 }
 
 trait BuildMacros extends ScalaCliCrossSbtModule
@@ -887,7 +894,8 @@ trait Cli extends CrossSbtModule with ProtoBuildModule with CliLaunchers
     Deps.scalaPackager.exclude("com.lihaoyi" -> "os-lib_2.13"),
     Deps.signingCli.exclude((organization, "config_2.13")),
     Deps.slf4jNop, // to silence jgit
-    Deps.sttp
+    Deps.sttp,
+    Deps.scalafixInterfaces
   )
   def compileIvyDeps = super.compileIvyDeps() ++ Agg(
     Deps.jsoniterMacros,
