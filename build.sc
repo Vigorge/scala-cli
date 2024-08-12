@@ -254,7 +254,7 @@ object dummy extends Module {
     )
   }
   object scalafix extends ScalaModule with Bloop.Module {
-    def skipBloop = true
+    def skipBloop    = true
     def scalaVersion = Scala.defaultInternal
     def ivyDeps = Agg(
       Deps.scalafixInterfaces
